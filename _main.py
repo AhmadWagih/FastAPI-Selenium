@@ -5,8 +5,8 @@ import os
 
 
 #
-app = FastAPI()
 SECRET = os.getenv("SECRET")
+app = FastAPI()
 
 
 class Msg(BaseModel):
@@ -14,7 +14,6 @@ class Msg(BaseModel):
     secret: str
 
 @app.get("/")
-
 async def root():
     return {"message": "Hello World. Welcome to FastAPI!"}
 
