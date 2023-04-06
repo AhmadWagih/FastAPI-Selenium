@@ -14,13 +14,13 @@ class message(BaseModel):
 async def testImages(url:str):
     driver = createDriver()
     src = getImages(driver,url)
+    driver.close()
     imgRes=[]
     for s in src:
         res=imageResolution(s)
-        if res<1 :
-            return False
+        # if res<1 :
+        #     return False
         imgRes.append(res)
-    driver.close()
     return imgRes
     return True
 
@@ -29,4 +29,8 @@ async def testLanguage(url:str):
     driver = createDriver()
     html = getText(driver,url)
     driver.close()
+    language = checkLanguage(html)
+    # if(language != "Indian"):
+    #     return False
     return html
+    return True

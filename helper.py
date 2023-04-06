@@ -1,4 +1,4 @@
-import cv2
+# import cv2
 import imquality.brisque as brisque
 import PIL.Image
 from textblob import TextBlob
