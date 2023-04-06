@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 def createDriver()->webdriver.Chrome: # it annotates the return type of the function is webdriver.Chrome
@@ -18,11 +19,23 @@ def createDriver()->webdriver.Chrome: # it annotates the return type of the func
     return myDrived
 
 def getPageSource(driver,url)->str:
-    # driver.get("https://www.google.com")
     driver.get(url)
     return driver.page_source
 
-def doBGWork(inp):
-    print("doin bg tasks")
-    print(inp.message)
-    print("Done")
+def getImages(driver,url)->str:
+    driver.get(url)
+    # driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
+    imgResults = driver.find_elements(By.XPATH,"//img")
+    print(imgResults)
+    src = []
+    for img in imgResults:
+        src.append(img.get_attribute('src'))
+    print(src)
+    return src
+
+def getText(driver,url)->str:
+    driver.get(url)
+    text = driver.find_element(By.XPATH, "/html/body").text
+    print(text)
+    return text
+

@@ -8,10 +8,16 @@ app = FastAPI()
 
 class message(BaseModel):
     msg:str
-    secret:str
 
-@app.post("/post")
-async def testURL(url:str):
+@app.post("/img")
+async def testImages(url:str):
+    driver = createDriver()
+    src = getImages(driver,url)
+    driver.close()
+    return src
+
+@app.post("/language")
+async def testLanguage(url:str):
     driver = createDriver()
     html = getPageSource(driver,url)
     driver.close()
