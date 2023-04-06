@@ -4,10 +4,10 @@ from _extract import *
 import os
 
 
-SECRET = os.getenv("SECRET")
-
 #
 app = FastAPI()
+SECRET = os.getenv("SECRET")
+
 
 class Msg(BaseModel):
     msg: str
