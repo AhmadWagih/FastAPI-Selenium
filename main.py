@@ -23,7 +23,7 @@ async def homepage():
     return html
 
 @app.post("/dopgwork")
-async def dopgwork(mes = message,backgroundTasks=BackgroundTasks):
+async def dopgwork(mes : message,backgroundTasks:BackgroundTasks):
     doBGWork(mes)
     backgroundTasks.add_task(doBGWork,mes)
     return {"message": "Success, background task started"}
