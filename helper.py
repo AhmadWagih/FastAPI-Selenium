@@ -13,6 +13,7 @@ def imageResolution(imgUrl:str):
 
 def checkLanguage(text:str):
     b= TextBlob(text)
+    print(b)
     language = b.detect_language()
     print(language)
 

@@ -17,10 +17,10 @@ async def testImages(url:str):
     driver.close()
     imgRes=[]
     for s in src:
-        res=imageResolution(s)
+        # res=imageResolution(s)
         # if res<1 :
         #     return False
-        imgRes.append(res)
+        imgRes.append(s)
     return imgRes
     return True
 
