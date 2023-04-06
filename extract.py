@@ -41,9 +41,8 @@ def getText(driver,url)->str:
 
 def checkDropDown(driver,url):
     driver.get(url)
-    driver.find_elements(By.XPATH, "//*[@id='page-home']/div[1]/header/div[1]/nav/div[1]")
+    m=driver.find_elements(By.XPATH, "//*[@id='page-home']/div[1]/header/div[1]/nav/div[1]")
     action = ActionChains(driver)
-    m= driver.find_element_by_link_text("Enabled")
     action.move_to_element(m).perform()
     n = driver.find_element_by_link_text("Back to JQuery UI")
     print(n)
