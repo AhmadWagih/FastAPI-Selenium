@@ -1,37 +1,28 @@
-from fastapi import FastAPI, BackgroundTasks, HTTPException
-from pydantic import BaseModel
+from fastapi import FastAPI,BackgroundTasks
 from extract import *
+from pydantic import BaseModel
 import os
 
-
+api = FastAPI()
 SECRET = os.getenv("SECRET")
 
-#
-app = FastAPI()
-
-class Msg(BaseModel):
-    msg: str
-    secret: str
-
-@app.get("/")
-
-async def root():
-    return {"message": "Hello World. Welcome to FastAPI!"}
+class message(BaseModel):
+    msg:str
+    secret:str
 
 
-@app.get("/homepage")
-async def demo_get():
-    driver=createDriver()
+@api.get("/")
+async def get():
+    return {"message : successfully"}
 
-    homepage = getGoogleHomepage(driver)
+@api.get("/homepage")
+async def homepage():
+    driver = createDriver()
+    html = getGoogleHomePage(driver)
     driver.close()
-    return homepage
+    return html
 
-@app.post("/backgroundDemo")
-async def demo_post(inp: Msg, background_tasks: BackgroundTasks):
-    
-    background_tasks.add_task(doBackgroundTask, inp)
-    return {"message": "Success, background task started"}
-    
-
-
+@api.post("/dopgwork")
+async def dopgwork(mes = message,backgroundTasks=BackgroundTasks):
+    doBGWork(mes)
+    print("successful")
