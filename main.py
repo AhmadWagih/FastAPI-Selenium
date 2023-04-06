@@ -16,9 +16,13 @@ async def testImages(url:str):
     src = getImages(driver,url)
     imgRes=[]
     for s in src:
-        imgRes.append(imageResolution(s))
+        res=imageResolution(s)
+        if res<1 :
+            return False
+        imgRes.append(res)
     driver.close()
     return imgRes
+    return True
 
 @app.post("/language")
 async def testLanguage(url:str):

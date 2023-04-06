@@ -1,4 +1,3 @@
-import numpy
 import cv2
 import imquality.brisque as brisque
 import PIL.Image
