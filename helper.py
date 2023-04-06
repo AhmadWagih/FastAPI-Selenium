@@ -1,7 +1,7 @@
 # import cv2
 import imquality.brisque as brisque
 import PIL.Image
-from textblob import TextBlob
+from langdetect import detect, DetectorFactory
 
 def imageResolution(imgUrl:str):
     # img=cv2.imread(imgUrl)
@@ -12,8 +12,7 @@ def imageResolution(imgUrl:str):
     return score 
 
 def checkLanguage(text:str):
-    b= TextBlob(text)
-    print(b)
-    language = b.detect_language()
-    print(language)
+    DetectorFactory.seed = 0
+    language=detect(text)
+    return language
 
