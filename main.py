@@ -1,5 +1,6 @@
 from fastapi import FastAPI,BackgroundTasks
 from extract import *
+from helper import *
 from pydantic import BaseModel
 import os
 
@@ -13,8 +14,11 @@ class message(BaseModel):
 async def testImages(url:str):
     driver = createDriver()
     src = getImages(driver,url)
+    imgRes=[]
+    for s in src:
+        imgRes.append(imageResolution(s))
     driver.close()
-    return src
+    return imgRes
 
 @app.post("/language")
 async def testLanguage(url:str):
