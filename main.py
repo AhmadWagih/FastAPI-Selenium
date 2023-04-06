@@ -33,3 +33,9 @@ async def testLanguage(url:str):
     if(language != "hi"):
         return False
     return True
+
+@app.post("/dropdown")
+async def testDropDown(url:str):
+    driver = createDriver()
+    n = checkDropDown(driver,url)
+    return n 
