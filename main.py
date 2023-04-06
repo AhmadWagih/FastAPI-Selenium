@@ -29,8 +29,8 @@ async def testLanguage(url:str):
     driver = createDriver()
     html = getText(driver,url)
     driver.close()
-    # language = checkLanguage(html)
+    language = checkLanguage(html)
     # if(language != "Indian"):
     #     return False
-    return html
+    return language
     return True
