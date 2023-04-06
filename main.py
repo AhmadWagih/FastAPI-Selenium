@@ -23,6 +23,6 @@ async def testImages(url:str):
 @app.post("/language")
 async def testLanguage(url:str):
     driver = createDriver()
-    html = getPageSource(driver,url)
+    html = getText(driver,url)
     driver.close()
     return html
