@@ -12,7 +12,7 @@ class message(BaseModel):
 
 
 @app.get("/")
-async def get():
+async def root():
     return {"message : successfully"}
 
 @app.get("/homepage")
@@ -25,4 +25,5 @@ async def homepage():
 @app.post("/dopgwork")
 async def dopgwork(mes = message,backgroundTasks=BackgroundTasks):
     doBGWork(mes)
-    print("successful")
+    backgroundTasks.add_task(doBGWork,mes)
+    return {"message": "Success, background task started"}
