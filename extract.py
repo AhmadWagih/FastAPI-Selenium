@@ -17,8 +17,9 @@ def createDriver()->webdriver.Chrome: # it annotates the return type of the func
 
     return myDrived
 
-def getGoogleHomePage(driver)->str:
-    driver.get("https://www.google.com")
+def getPageSource(driver,url)->str:
+    # driver.get("https://www.google.com")
+    driver.get(url)
     return driver.page_source
 
 def doBGWork(inp):

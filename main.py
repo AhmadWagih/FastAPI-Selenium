@@ -10,20 +10,9 @@ class message(BaseModel):
     msg:str
     secret:str
 
-
-@app.get("/")
-async def root():
-    return {"message : successfully"}
-
-@app.get("/homepage")
-async def homepage():
+@app.post("/post")
+async def testURL(url:str):
     driver = createDriver()
-    html = getGoogleHomePage(driver)
+    html = getPageSource(driver,url)
     driver.close()
     return html
-
-@app.post("/dopgwork")
-async def dopgwork(mes : message,backgroundTasks:BackgroundTasks):
-    doBGWork(mes)
-    backgroundTasks.add_task(doBGWork,mes)
-    return {"message": "Success, background task started"}
