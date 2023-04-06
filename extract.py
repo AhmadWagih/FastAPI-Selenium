@@ -39,3 +39,6 @@ def getText(driver,url)->str:
     print(text)
     return text
 
+def checkDropDown(driver,url):
+    driver.get(url)
+    driver.find_elements(By.XPATH, "//*[@id='page-home']/div[1]/header/div[1]/nav/div[1]")
