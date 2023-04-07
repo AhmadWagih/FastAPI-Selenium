@@ -27,12 +27,10 @@ def getImages(driver,url)->str:
     driver.get(url)
     driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
     imgResults = driver.find_elements(By.XPATH,"//img")
-    print(imgResults)
-    src = []
     for img in imgResults:
-        src.append(img.get_attribute('src'))
-    print(src)
-    return src
+        if (img.get_attribute('src') == r"https://ccweb.imgix.net/https%3A%2F%2Fwww.classcentral.com%2Fimages%2Fillustrations%2Flearning-illustration-holi.png?auto=format&h=650&ixlib=php-3.3.1&s=2367f95a04f9d0237239831d72054f0b"):
+            return True
+    return False
 
 def getText(driver,url)->str:
     driver.get(url)
