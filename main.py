@@ -9,10 +9,11 @@ app = FastAPI()
 
 
 @app.post("/post")
-async def testImages(url:str):
+async def test(url:str):
     driver = createDriver()
     result = getImages(driver,url)
     html = getText(driver,url)
+    source = getPageSource(driver,url)
     # n = checkDropDown(driver,url)
     driver.close()
     err =""
@@ -20,5 +21,9 @@ async def testImages(url:str):
         err += "Images not high resolution"
     language = checkLanguage(html)
     if(language != "hi"):
-        err += "Inner pages not translated"
+        err += "\n pages not translated"
+    if(not checkWrongPage(html)):
+        err += "\n Wrong Page"
+    if(not checkDrop(source)):
+        err += "\n Javascript dropdown not working properly"
     return err

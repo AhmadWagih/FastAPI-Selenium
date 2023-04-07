@@ -28,7 +28,8 @@ def getImages(driver,url)->str:
     driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
     imgResults = driver.find_elements(By.XPATH,"//img")
     for img in imgResults:
-        if (img.get_attribute('src') == r"https://ccweb.imgix.net/https%3A%2F%2Fwww.classcentral.com%2Fimages%2Fillustrations%2Flearning-illustration-holi.png?auto=format&h=650&ixlib=php-3.3.1&s=2367f95a04f9d0237239831d72054f0b"):
+        if (img.get_attribute('src') == r"https://ccweb.imgix.net/https%3A%2F%2Fwww.classcentral.com%2Fimages%2Fillustrations%2Flearning-illustration-holi.png?auto=format&h=650&ixlib=php-3.3.1&s=2367f95a04f9d0237239831d72054f0b"
+        or img.get_attribute('src') == r"https://ccweb.imgix.net/https%3A%2F%2Fwww.classcentral.com%2Fimages%2Fillustrations%2Flearning-illustration-valentine.png?auto=format&h=650&ixlib=php-3.3.1&s=fdc8f87b79fd3e2a8a22811688010dc6"):
             return True
     return False
 
@@ -44,3 +45,15 @@ def checkDropDown(driver,url):
     action.move_to_element(m).perform()
     n = driver.find_element_by_link_text("Back to JQuery UI")
     return n 
+
+def checkWrongPage(htmlStr):
+    title = "अपना अगला कोर्स खोजें।"
+    return title in htmlStr
+
+def checkDrop(sourceStr):
+    string = "LARGE_UP_MAIN_NAV_TRIGGER"
+    return string in sourceStr
+
+def getPageSource(driver: webdriver.Chrome,url) -> str:
+    driver.get(url)
+    return driver.page_source
