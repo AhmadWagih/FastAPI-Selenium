@@ -43,4 +43,4 @@ def checkDropDown(driver,url):
     action = ActionChains(driver)
     action.move_to_element(m).perform()
     n = driver.find_element_by_link_text("Back to JQuery UI")
-    print(n)
+    return n 

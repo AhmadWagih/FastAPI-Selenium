@@ -13,16 +13,9 @@ class message(BaseModel):
 @app.post("/img")
 async def testImages(url:str):
     driver = createDriver()
-    src = getImages(driver,url)
+    result = getImages(driver,url)
     driver.close()
-    imgRes=[]
-    for s in src:
-        # res=imageResolution(s)
-        # if res<1 :
-        #     return False
-        imgRes.append(s)
-    return imgRes
-    return True
+    return result
 
 @app.post("/language")
 async def testLanguage(url:str):
