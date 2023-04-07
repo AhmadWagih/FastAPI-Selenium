@@ -7,28 +7,18 @@ import os
 SECRET = os.getenv("SECRET")
 app = FastAPI()
 
-class message(BaseModel):
-    msg:str
 
-@app.post("/img")
+@app.post("/post")
 async def testImages(url:str):
     driver = createDriver()
     result = getImages(driver,url)
-    driver.close()
-    return result
-
-@app.post("/language")
-async def testLanguage(url:str):
-    driver = createDriver()
     html = getText(driver,url)
+    # n = checkDropDown(driver,url)
     driver.close()
+    err =""
+    if result== False:
+        err += "Images not high resolution"
     language = checkLanguage(html)
     if(language != "hi"):
-        return False
-    return True
-
-@app.post("/dropdown")
-async def testDropDown(url:str):
-    driver = createDriver()
-    n = checkDropDown(driver,url)
-    return n 
+        err += "Inner pages not translated"
+    return err
