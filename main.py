@@ -16,14 +16,15 @@ async def test(url:str):
     source = getPageSource(driver,url)
     # n = checkDropDown(driver,url)
     driver.close()
-    err ="Pass"
+    err =""
     if result== False:
-        err = "Images not high resolution"
+        err += "Images not high resolution, "
     language = checkLanguage(html)
     if(language != "hi"):
-        err += "\n pages not translated"
-    if(not checkWrongPage(html)):
-        err += "\n Wrong Page"
+        err += ", pages not translated, "
+    elif(not checkWrongPage(html)):
+        err += "Wrong Page, "
     if(not checkDrop(source)):
-        err += "\n Javascript dropdown not working properly"
+        err += "Javascript dropdown not working properly"
+    if err =="": return "Pass"
     return err
