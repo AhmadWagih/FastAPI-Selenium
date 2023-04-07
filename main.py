@@ -16,9 +16,9 @@ async def test(url:str):
     source = getPageSource(driver,url)
     # n = checkDropDown(driver,url)
     driver.close()
-    err =""
+    err ="Pass"
     if result== False:
-        err += "Images not high resolution"
+        err = "Images not high resolution"
     language = checkLanguage(html)
     if(language != "hi"):
         err += "\n pages not translated"
